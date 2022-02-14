@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/models/test_data_list.dart';
 import 'package:graduation_project/modules/test_module/result_screen.dart';
 
@@ -13,8 +14,8 @@ class _TestState extends State<TestScreen> {
   // ignore: prefer_final_fields
   PageController _controller = PageController(initialPage: 0);
   bool isPressed = false;
-  Color isTrue = Colors.green;
-  Color isWrong = Colors.red;
+  Color isTrue = Colors.blueGrey[800];
+  Color isWrong = Colors.blueGrey[400];
   int score = 0;
   // ignore: deprecated_member_use
   List ans = List(38);
@@ -24,9 +25,33 @@ class _TestState extends State<TestScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        //shadowColor: Colors.transparent,
+
+        ////////////////////////////HOME BUTTON/////////////////////////////
+        actions: [
+          IconButton(
+            color: Colors.white,
+            iconSize: 40,
+            icon: const Icon(Icons.home_outlined),
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(widget.runtimeType),
+                ),
+              );
+            },
+          )
+        ],
+
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(8.0),
         child: PageView.builder(
           physics: const NeverScrollableScrollPhysics(),
           controller: _controller,
@@ -45,22 +70,6 @@ class _TestState extends State<TestScreen> {
                   const SizedBox(
                     height: 60.0,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      'Card ${index + 1} of 38',
-                      style: const TextStyle(
-                        fontSize: 28.0,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    color: Colors.black,
-                    thickness: 1,
-                    height: 8.0,
-                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -68,12 +77,12 @@ class _TestState extends State<TestScreen> {
                     questions[index].question,
                     style: const TextStyle(
                       fontSize: 24.0,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w200,
                       color: Colors.black,
                     ),
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 15.0,
                   ),
                   Image(
                     width: 233.0,
@@ -82,9 +91,7 @@ class _TestState extends State<TestScreen> {
                       questions[index].image,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -122,9 +129,12 @@ class _TestState extends State<TestScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  Visibility(
+                      visible: !Arrowshow,
+                      child: SizedBox(
+                        height: 60,
+                      )),
+
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -132,10 +142,12 @@ class _TestState extends State<TestScreen> {
                       for (int i = 0; i < questions[index].answer.length; i++)
                         // ignore: sized_box_for_whitespace
                         Container(
-                          width: 250.0,
+                          width: 350.0,
                           margin: const EdgeInsets.only(bottom: 18.0),
                           child: MaterialButton(
-                            shape: const StadiumBorder(),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                             color: isPressed
                                 ? questions[index]
                                         .answer
@@ -145,7 +157,7 @@ class _TestState extends State<TestScreen> {
                                     ? isTrue
                                     : isWrong
                                 : Colors.blueGrey,
-                            padding: const EdgeInsets.symmetric(vertical: 18.0),
+                            padding: const EdgeInsets.symmetric(vertical: 25.0),
                             onPressed: isPressed
                                 ? () {}
                                 : () {
@@ -186,35 +198,55 @@ class _TestState extends State<TestScreen> {
                               questions[index].answer.keys.toList()[i],
                               style: const TextStyle(
                                 color: Colors.white,
+                                fontSize: 17.0,
                               ),
                             ),
                           ),
                         ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 17.0,
+                  ),
                   Visibility(
                     visible: !Arrowshow,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        MaterialButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ResultScreen(score, ans),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 15),
+                          child: Container(
+                            width: 180,
+                            height: 45,
+                       child: MaterialButton(
+                           elevation: 0.0,
+                           color: Colors.white70,
+                           shape: RoundedRectangleBorder(
+                             borderRadius: BorderRadius.circular(15),
+                             side: BorderSide(color: Colors.blueGrey, width: 2),),
+                           padding: EdgeInsets.symmetric(
+                               vertical: 10.0, horizontal: 10.0),
+                           onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ResultScreen(score, ans),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Show result',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 22,
                               ),
-                            );
-                          },
-                          child: const Text(
-                            'Show result',
-                            style: TextStyle(
-                              color: Colors.black,
                             ),
+                          ),
                           ),
                         ),
                       ],
-                    ),
+
+              ),
                   ),
                 ],
               ),
@@ -225,3 +257,4 @@ class _TestState extends State<TestScreen> {
     );
   }
 }
+

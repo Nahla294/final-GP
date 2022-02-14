@@ -221,26 +221,34 @@ Widget buildReport(
           width: 120.0,
           height: 120.0,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
+          borderRadius: BorderRadius.circular(70),
+            border: Border.all(color: Colors.grey[300],
+            width: 10),
+            image:
+            DecorationImage(
+              //scale: 0.1,
+              fit: BoxFit.cover,
               image: AssetImage(
                 image,
                 //questions[index].image,
               ),
-              fit: BoxFit.cover,
+              //fit: BoxFit.cover,
             ),
           ),
         ),
-        const SizedBox(
-          width: 10.0,
-        ),
+        // const SizedBox(
+        //   width: 10.0,
+        // ),
+
         Expanded(
           child: Container(
-            height: 170.0,
+
+            height: 110.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
                 Expanded(
                   child: Text(
                     textAnswer,
@@ -248,7 +256,7 @@ Widget buildReport(
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 15.0,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
@@ -285,7 +293,7 @@ Widget buildReport(
     );
 
 Widget DividerReport() => Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
         width: double.infinity,
         height: 1.0,
