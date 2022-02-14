@@ -112,52 +112,50 @@ Widget about({
   double result,
   double text_size,
 }) =>
-    Flexible(
-      child: Expanded(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 80.0,
-            horizontal: 40.0,
-          ),
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.all(35.0),
-                    child: Text(
-                      '${data}',
-                      style: TextStyle(
-                        fontSize: text_size,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black87,
-                      ),
+    Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 80.0,
+          horizontal: 40.0,
+        ),
+        child: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.all(35.0),
+                  child: Text(
+                    '${data}',
+                    style: TextStyle(
+                      fontSize: text_size,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black87,
                     ),
                   ),
                 ),
-              ],
-            ),
-            /*  decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50.0),
-              color: Color.fromRGBO(115, 147, 179, 0.05),
-              border: Border.all(color: Colors.grey.withOpacity(0.08)),
-            ),*/
-            decoration: BoxDecoration(
-              color: Colors.grey[200].withOpacity(0.5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade400,
-                  spreadRadius: 2,
-                  blurRadius: 2,
-                  offset: Offset(4, 5),
+              ),
+            ],
+          ),
+          /*  decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50.0),
+            color: Color.fromRGBO(115, 147, 179, 0.05),
+            border: Border.all(color: Colors.grey.withOpacity(0.08)),
+          ),*/
+          decoration: BoxDecoration(
+            color: Colors.grey[200].withOpacity(0.5),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade400,
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(4, 5),
 
-                ),
-              ],
-              borderRadius: BorderRadius.circular(40.0),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(40.0),
 
-            ),
           ),
         ),
       ),
