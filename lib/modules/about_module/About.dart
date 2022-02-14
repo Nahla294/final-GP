@@ -29,7 +29,7 @@ class _AboutState extends State<About> {
         children: [
           about(
             text_size: 19,
-            data: 'Welcome to Color Hermony!\nWe are a group of six and we all students at faculty of computer science and artificial intelligence ,we made this aplication as a graduation project for color blindness people mainly to help them with their daily routine.\nWe tried to build the perfect whole application that have all needed features for making life a little bit easy for color blindness people.\nWe know that you are not a minor faction and it was not easy for you and we care alot about you.\nHope you all find this application as useful as we expect it to be',
+            data: 'Welcome to Color Hermony!\nWe are a group of six and we all students at faculty of computer science and artificial intelligence Helwan university, we made this application as a graduation project mainly to support color blindness people and to help them with their daily routine.\nWe tried to build the perfect whole application that has all needed features for making life a little bit easier for color blindness people.\nWe know that you are not a minor faction and it was not easy for you and we care alot about you.\nHope you all find this application as useful as we expect it to be',
           )
 
         ],
