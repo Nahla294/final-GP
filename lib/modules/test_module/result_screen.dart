@@ -52,10 +52,10 @@ class _ResultScreenState extends State<ResultScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'The Result..',
+                'The result.....',
                 style: TextStyle(
                   fontSize: 40.0,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
               ),
@@ -79,10 +79,10 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
               finalScore == 100
                   ? const Text(
-                      "You don't have a type of color blindness",
+                      "You don't have any type of color blindness",
                       style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
                         color: Colors.black,
                       ),
                     )
