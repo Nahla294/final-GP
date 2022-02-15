@@ -25,7 +25,6 @@ class _TestState extends State<TestScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -38,7 +37,7 @@ class _TestState extends State<TestScreen> {
             color: Colors.white,
             iconSize: 40,
             icon: const Icon(Icons.home_outlined),
-            onPressed: (){
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -48,7 +47,6 @@ class _TestState extends State<TestScreen> {
             },
           )
         ],
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -94,7 +92,6 @@ class _TestState extends State<TestScreen> {
                       questions[index].image,
                     ),
                   ),
-
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -132,15 +129,15 @@ class _TestState extends State<TestScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Visibility(
-                      visible: !Arrowshow,
-                      child: SizedBox(
-                        height: 60,
-                      )),
-
+                    visible: !Arrowshow,
+                    child: const SizedBox(
+                      height: 60,
+                    ),
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -218,38 +215,45 @@ class _TestState extends State<TestScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 15),
+                          // ignore: sized_box_for_whitespace
                           child: Container(
                             width: 180,
                             height: 45,
-                       child: MaterialButton(
-                           elevation: 0.0,
-                           color: Colors.white70,
-                           shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(15),
-                             side: BorderSide(color: Colors.blueGrey, width: 2),),
-                           padding: EdgeInsets.symmetric(
-                               vertical: 10.0, horizontal: 10.0),
-                           onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ResultScreen(score, ans),
+                            child: MaterialButton(
+                              elevation: 0.0,
+                              color: Colors.white70,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                side: const BorderSide(
+                                  color: Colors.blueGrey,
+                                  width: 2,
                                 ),
-                              );
-                            },
-                            child: const Text(
-                              'Show result',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ResultScreen(score, ans),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Show result',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                ),
                               ),
                             ),
                           ),
-                          ),
                         ),
                       ],
-
-              ),
+                    ),
                   ),
                 ],
               ),
@@ -260,4 +264,3 @@ class _TestState extends State<TestScreen> {
     );
   }
 }
-
