@@ -249,39 +249,48 @@ Widget buildReport(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                Expanded(
-                  child: Text(
-                    textAnswer,
-                    //'Your answer : ' + ans[index],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Flexible(
+                    child: Text(
+                      textAnswer,
+                      //'Your answer : ' + ans[index],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                      ),
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    textNormal,
-                    //'Normal view : ' +
-                    //    questions[index].answer.keys.firstWhere(
-                    //        (k) =>
-                    //            questions[index].answer[k].toString() == 'true',
-                    //        orElse: () => null),
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Flexible(
+                    child: Text(
+                      textNormal,
+                      //'Normal view : ' +
+                      //    questions[index].answer.keys.firstWhere(
+                      //        (k) =>
+                      //            questions[index].answer[k].toString() == 'true',
+                      //        orElse: () => null),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      maxLines: 3,
                     ),
-                    maxLines: 3,
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    textBlind,
-                    //'Color blindness : ' + questions[index].colorBlind,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Flexible(
+                    child: Text(
+                      textBlind,
+                      //'Color blindness : ' + questions[index].colorBlind,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
                     ),
                   ),
                 ),
