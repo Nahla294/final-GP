@@ -25,11 +25,12 @@ class _TestState extends State<TestScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+        //backgroundColor: Colors.blueGrey,
         //shadowColor: Colors.transparent,
 
         ////////////////////////////HOME BUTTON/////////////////////////////
@@ -38,17 +39,16 @@ class _TestState extends State<TestScreen> {
             color: Colors.white,
             iconSize: 40,
             icon: const Icon(Icons.home_outlined),
-            onPressed: (){
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(widget.runtimeType),
+                  builder: (context) => HomePage(),
                 ),
               );
             },
           )
         ],
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -73,16 +73,19 @@ class _TestState extends State<TestScreen> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  Text(
-                    questions[index].question,
-                    style: const TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w200,
-                      color: Colors.black,
+                  Padding(
+                    padding: const EdgeInsets.all(7.0),
+                    child: Text(
+                      questions[index].question,
+                      style: const TextStyle(
+                        fontSize: 26.0,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                   const SizedBox(
-                    height: 15.0,
+                    height: 40.0,
                   ),
                   Image(
                     width: 233.0,
@@ -91,7 +94,6 @@ class _TestState extends State<TestScreen> {
                       questions[index].image,
                     ),
                   ),
-
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -129,12 +131,15 @@ class _TestState extends State<TestScreen> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Visibility(
-                      visible: !Arrowshow,
-                      child: SizedBox(
-                        height: 60,
-                      )),
-
+                    visible: !Arrowshow,
+                    child: const SizedBox(
+                      height: 60,
+                    ),
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +162,7 @@ class _TestState extends State<TestScreen> {
                                     ? isTrue
                                     : isWrong
                                 : Colors.blueGrey,
-                            padding: const EdgeInsets.symmetric(vertical: 25.0),
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
                             onPressed: isPressed
                                 ? () {}
                                 : () {
@@ -198,15 +203,12 @@ class _TestState extends State<TestScreen> {
                               questions[index].answer.keys.toList()[i],
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 17.0,
+                                fontSize: 18.0,
                               ),
                             ),
                           ),
                         ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 17.0,
                   ),
                   Visibility(
                     visible: !Arrowshow,
@@ -215,38 +217,45 @@ class _TestState extends State<TestScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(right: 15),
+                          // ignore: sized_box_for_whitespace
                           child: Container(
                             width: 180,
                             height: 45,
-                       child: MaterialButton(
-                           elevation: 0.0,
-                           color: Colors.white70,
-                           shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(15),
-                             side: BorderSide(color: Colors.blueGrey, width: 2),),
-                           padding: EdgeInsets.symmetric(
-                               vertical: 10.0, horizontal: 10.0),
-                           onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ResultScreen(score, ans),
+                            child: MaterialButton(
+                              elevation: 0.0,
+                              color: Colors.white70,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                side: const BorderSide(
+                                  color: Colors.blueGrey,
+                                  width: 2,
                                 ),
-                              );
-                            },
-                            child: const Text(
-                              'Show result',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 10.0,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ResultScreen(score, ans),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Show result',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                ),
                               ),
                             ),
                           ),
-                          ),
                         ),
                       ],
-
-              ),
+                    ),
                   ),
                 ],
               ),
@@ -257,4 +266,3 @@ class _TestState extends State<TestScreen> {
     );
   }
 }
-

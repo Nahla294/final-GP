@@ -3,6 +3,7 @@ import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/modules/test_module/report_screen.dart';
 
 // ignore: must_be_immutable
+//
 class ResultScreen extends StatefulWidget {
   final int score;
   // ignore: deprecated_member_use
@@ -21,6 +22,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blueGrey,
         shadowColor: Colors.transparent,
 
@@ -30,20 +32,19 @@ class _ResultScreenState extends State<ResultScreen> {
             color: Colors.blueGrey,
             iconSize: 40,
             icon: const Icon(Icons.home),
-            onPressed: (){
+            onPressed: () {
               // ignore: prefer_typing_uninitialized_variables
               var widget;
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(widget.runtimeType),
+                  builder: (context) => HomePage(),
                 ),
               );
             },
           )
         ],
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Center(
@@ -52,10 +53,10 @@ class _ResultScreenState extends State<ResultScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'The Result..',
+                'The result.....',
                 style: TextStyle(
                   fontSize: 40.0,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w400,
                   color: Colors.black,
                 ),
               ),
@@ -66,7 +67,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 backgroundColor: Colors.blueGrey,
                 radius: 80.0,
                 child: Text(
-                  ' '"$finalScore" "%",
+                  ' ' "$finalScore" "%",
                   style: const TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold,
@@ -74,35 +75,51 @@ class _ResultScreenState extends State<ResultScreen> {
                   ),
                 ),
               ),
-
               const SizedBox(
                 height: 80.0,
               ),
-              const Text(
-                "You have a type of color blindness",
-                style: TextStyle(
-                  fontSize: 25.0,
-                  //fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
+              finalScore == 100
+                  ? const Text(
+                      "You don't have any type of color blindness",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    )
+                  : const Text(
+                      "You have a type of color blindness",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
               const SizedBox(
                 height: 80.0,
               ),
+              // ignore: sized_box_for_whitespace
               Container(
                 width: 300,
                 height: 60,
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
-                    side: BorderSide(color: Colors.blueGrey, width: 2),),
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10.0),
+                    side: const BorderSide(
+                      color: Colors.blueGrey,
+                      width: 2,
+                    ),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 10.0,
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ReportScreen(widget.ans),
+                        builder: (context) =>
+                            ReportScreen(widget.score, widget.ans),
                       ),
                     );
                   },
