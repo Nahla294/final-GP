@@ -23,6 +23,7 @@ class _colorsCsvFileState extends State<colorsCsvFile> {
 
   Widget build(BuildContext context) {
     return Scaffold( appBar:AppBar(
+      backgroundColor:Color.fromRGBO(42,65,88, 1.0),
       title: Text('Colors'),
     ) ,
       body:basic_colors() ,

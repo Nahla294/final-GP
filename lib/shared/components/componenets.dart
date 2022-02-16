@@ -18,14 +18,15 @@ Widget Answer({
             width: 55,
             child: CircleAvatar(
               backgroundImage: AssetImage(
-                  "assets/images/55442f2018fd5e2781c732f90f1f7756.jpg"),
+                  "assets/images/robot1.png"),
             ),
           ),
+
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Bubble(
                 radius: Radius.circular(17.0),
-                color: Color.fromRGBO(115, 147, 179, 1.0),
+                color: Color.fromRGBO(42,65,88, 0.9),
                 elevation: 0.0,
                 child: Padding(
                   padding: EdgeInsets.all(5.0),
@@ -99,7 +100,7 @@ Widget send({
             height: 55,
             width: 55,
             child: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profilepic.png"),
+              backgroundImage: AssetImage("assets/images/u6.jpeg"),
             ),
           ),
         ],
@@ -144,16 +145,16 @@ Widget about({
             border: Border.all(color: Colors.grey.withOpacity(0.08)),
           ),*/
           decoration: BoxDecoration(
-            color: Colors.grey[200].withOpacity(0.5),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade400,
-                spreadRadius: 2,
-                blurRadius: 2,
-                offset: Offset(4, 5),
+              color: Colors.grey[300],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade400,
+                  spreadRadius:2,
+                  blurRadius:2,
+                  offset: Offset(4,5),
 
-              ),
-            ],
+                ),
+              ],
             borderRadius: BorderRadius.circular(40.0),
 
           ),
@@ -388,3 +389,57 @@ Widget colorList(
       ),
     );
 
+Widget CardMenu({
+  @required String title,
+  @required String icon,
+  Function onTap,
+  Color fontColor = Colors.black,
+  Color color ,
+  //Color color ,
+})=>
+   GestureDetector(
+    onTap: onTap,
+    child: Container(
+
+      width: 175,
+      height:165,
+      decoration: BoxDecoration(
+        color: color= Colors.grey[200],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade400,
+            spreadRadius:2,
+            blurRadius:2,
+            offset: Offset(4,5),
+
+          ),
+        ],
+
+        borderRadius: BorderRadius.circular(35.0),
+
+      ),
+      child: Column(
+        children: [
+
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: 20.0,),
+            child:
+            Image.asset(icon,width: 65,height:65 ,),
+          ),
+
+          Text(title,
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 20.0,
+              //fontFamily: 'valera',
+              color: fontColor,
+            ),
+          ),
+
+        ],
+
+      ),
+    ),
+
+  );

@@ -22,6 +22,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blueGrey,
         shadowColor: Colors.transparent,
 
@@ -37,7 +38,7 @@ class _ResultScreenState extends State<ResultScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(widget.runtimeType),
+                  builder: (context) => HomePage(),
                 ),
               );
             },

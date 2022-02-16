@@ -52,8 +52,9 @@ class _ChatBotState extends State<ChatBot> {
     return Scaffold(
       appBar:
       AppBar(
-        title: Center(child: Text("ChatBotDemo")),
-        backgroundColor: Color.fromRGBO(96, 130, 182, 1.0),
+        automaticallyImplyLeading: false,
+        title: Center(child: Text("ChatBot")),
+        backgroundColor: Color.fromRGBO(42,65,88, 1.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),

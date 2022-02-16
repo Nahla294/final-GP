@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/modules/about_module/About.dart';
 import 'package:graduation_project/modules/chatbot_module/ChatBot.dart';
 import 'package:graduation_project/modules/colorMatch_module/colorsCsvFile.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: TestScreen(),
+      home: HomePage(),
     );
   }
 }

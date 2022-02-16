@@ -28,7 +28,9 @@ class _TestState extends State<TestScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        automaticallyImplyLeading: false,
+        backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+        //backgroundColor: Colors.blueGrey,
         //shadowColor: Colors.transparent,
 
         ////////////////////////////HOME BUTTON/////////////////////////////
@@ -41,7 +43,7 @@ class _TestState extends State<TestScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomePage(widget.runtimeType),
+                  builder: (context) => HomePage(),
                 ),
               );
             },
