@@ -18,14 +18,15 @@ Widget Answer({
             width: 55,
             child: CircleAvatar(
               backgroundImage: AssetImage(
-                  "assets/images/55442f2018fd5e2781c732f90f1f7756.jpg"),
+                  "assets/images/robot1.png"),
             ),
           ),
+
           Padding(
             padding: EdgeInsets.all(10.0),
             child: Bubble(
                 radius: Radius.circular(17.0),
-                color: Color.fromRGBO(115, 147, 179, 1.0),
+                color: Color.fromRGBO(42,65,88, 0.9),
                 elevation: 0.0,
                 child: Padding(
                   padding: EdgeInsets.all(5.0),
@@ -99,7 +100,7 @@ Widget send({
             height: 55,
             width: 55,
             child: CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profilepic.png"),
+              backgroundImage: AssetImage("assets/images/u6.jpeg"),
             ),
           ),
         ],
@@ -135,13 +136,27 @@ Widget about({
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
-          decoration: BoxDecoration(
+          /*  decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50.0),
             color: Color.fromRGBO(115, 147, 179, 0.05),
             border: Border.all(color: Colors.grey.withOpacity(0.08)),
+          ),*/
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade400,
+                spreadRadius:2,
+                blurRadius:2,
+                offset: Offset(4,5),
+
+              ),
+            ],
+            borderRadius: BorderRadius.circular(40.0),
+
           ),
         ),
       ),
@@ -235,39 +250,48 @@ Widget buildReport(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                Expanded(
-                  child: Text(
-                    textAnswer,
-                    //'Your answer : ' + ans[index],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Flexible(
+                    child: Text(
+                      textAnswer,
+                      //'Your answer : ' + ans[index],
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15.0,
+                      ),
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    textNormal,
-                    //'Normal view : ' +
-                    //    questions[index].answer.keys.firstWhere(
-                    //        (k) =>
-                    //            questions[index].answer[k].toString() == 'true',
-                    //        orElse: () => null),
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Flexible(
+                    child: Text(
+                      textNormal,
+                      //'Normal view : ' +
+                      //    questions[index].answer.keys.firstWhere(
+                      //        (k) =>
+                      //            questions[index].answer[k].toString() == 'true',
+                      //        orElse: () => null),
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      maxLines: 3,
                     ),
-                    maxLines: 3,
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    textBlind,
-                    //'Color blindness : ' + questions[index].colorBlind,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Flexible(
+                    child: Text(
+                      textBlind,
+                      //'Color blindness : ' + questions[index].colorBlind,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
                     ),
                   ),
                 ),
@@ -286,34 +310,28 @@ Widget DividerReport() => Padding(
     color: Colors.grey[300],
   ),
 );
-//////////////////////////////////    //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 var colorName;
 bool visibleMatchedButton = true;
 Widget colorList(
     List model,
     context,
     ) =>
-
     Padding(
       padding: const EdgeInsets.all(8.0),
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Container(
           width:double.infinity,
-          ///////////////Hight el container bta3 el matching//////////////////////////////
-          height: 100,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
+
+              borderRadius: BorderRadius.circular(10.0),
               color: Colors.grey[300]),
           child: Row(
             children: [
-              ///////////////////////////////Circle avatar el color////////////////////////////////
-              Padding(
-                padding: const EdgeInsets.only(left:8.0),
-                child: CircleAvatar(
-                  backgroundColor: Color(model[2]),
-                  radius: 42.0,
-                ),
+              CircleAvatar(
+                backgroundColor: Color(model[2]),
+                radius: 40.0,
               ),
               SizedBox(
                 width: 10,
@@ -322,17 +340,14 @@ Widget colorList(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '${model[1]}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18.0),
-                        ),
+                      Text(
+                        '${model[1]}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16.0),
                       ),
                       Text(
                         '${model[3]}',
-                        maxLines: 4,
+                        // maxLines: 2,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ]),
@@ -340,14 +355,13 @@ Widget colorList(
 
 
               Padding(
-                padding: const EdgeInsets.only(right: 10.0, bottom: 15),
+                padding: const EdgeInsets.only(left: 20.0),
                 child: Visibility(
                   visible: visibleMatchedButton,
                   child: Padding(
-                    padding: const EdgeInsets.only(right:1.0),
-                    child: Row(
-                      children: [
-                        IconButton(
+                    padding: const EdgeInsets.only(left:20.0),
+                    child: CircleAvatar(
+                      child: IconButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -364,19 +378,68 @@ Widget colorList(
 
                             }
                           },
-                          icon: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 45,
-                            color: Colors.blueGrey,
-                          ),
-                        ),
-                      ],
+                          icon: Icon(Icons.arrow_right_alt)),
                     ),
                   ),
                 ),
-              ),],
+              ),
+            ],
           ),
         ),
       ),
     );
 
+Widget CardMenu({
+  @required String title,
+  @required String icon,
+  Function onTap,
+  Color fontColor = Colors.black,
+  Color color ,
+  //Color color ,
+})=>
+    GestureDetector(
+      onTap: onTap,
+      child: Container(
+
+        width: 175,
+        height:165,
+        decoration: BoxDecoration(
+          color: color= Colors.grey[200],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade400,
+              spreadRadius:2,
+              blurRadius:2,
+              offset: Offset(4,5),
+
+            ),
+          ],
+
+          borderRadius: BorderRadius.circular(35.0),
+
+        ),
+        child: Column(
+          children: [
+
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 20.0,),
+              child:
+              Image.asset(icon,width: 65,height:65 ,),
+            ),
+
+            Text(title,
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 20.0,
+                //fontFamily: 'valera',
+                color: fontColor,
+              ),
+            ),
+
+          ],
+
+        ),
+      ),
+
+    );
