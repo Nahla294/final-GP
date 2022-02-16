@@ -10,6 +10,7 @@ class colorsCsvFile extends StatefulWidget {
 
   @override
   _colorsCsvFileState createState() => _colorsCsvFileState();
+
 }
 
 class _colorsCsvFileState extends State<colorsCsvFile> {
@@ -22,16 +23,25 @@ class _colorsCsvFileState extends State<colorsCsvFile> {
   @override
 
   Widget build(BuildContext context) {
-    return Scaffold( appBar:AppBar(
-      title: Text('Colors'),
-    ) ,
+    return Scaffold(
+      appBar:AppBar(
+        backgroundColor: Colors.blueGrey,
+        title: Center(child: Text('Colors')),
+      ) ,
       body:basic_colors() ,
-      floatingActionButton:FloatingActionButton(
 
-        child:Icon(Icons.arrow_upward_rounded),mini: true,
-        onPressed: (){
-          controller.animateTo(0.0,curve: Curves.easeInOut,duration:Duration(seconds: 1));
-        },
+      floatingActionButton:Container(
+        height: 35,
+        width: 40,
+        child: FloatingActionButton(
+          backgroundColor: Colors.blueGrey,
+
+          child:Icon(Icons.arrow_upward_rounded),//mini: true,
+
+          onPressed: (){
+            controller.animateTo(0.0,curve: Curves.easeInOut,duration:Duration(seconds: 1));
+          },
+        ),
       ),
     ) ;
 

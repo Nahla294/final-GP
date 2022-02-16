@@ -10,6 +10,7 @@ class matched_colors extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:AppBar(
+            backgroundColor: Colors.blueGrey,
             title: Text('$colorName'),
             leading: Builder(
                 builder: (BuildContext context) {

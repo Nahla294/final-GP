@@ -34,15 +34,15 @@ Widget Answer({
                     children: <Widget>[
                       Flexible(
                           child: Container(
-                        constraints: BoxConstraints(maxWidth: 250),
-                        child: Text(
-                          message,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
-                      ))
+                            constraints: BoxConstraints(maxWidth: 250),
+                            child: Text(
+                              message,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                          ))
                     ],
                   ),
                 )),
@@ -74,23 +74,23 @@ Widget send({
                     children: <Widget>[
                       Flexible(
                           child: Container(
-                        constraints: BoxConstraints(maxWidth: 250),
-                        child: Container(
-                          height: 28.0,
-                          child: MaterialButton(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 2.0, horizontal: 2.0),
-                              // minWidth: double.infinity,
-                              onPressed: function,
-                              child: Text(
-                                message,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              )),
-                        ),
-                      ))
+                            constraints: BoxConstraints(maxWidth: 250),
+                            child: Container(
+                              height: 28.0,
+                              child: MaterialButton(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 2.0, horizontal: 2.0),
+                                  // minWidth: double.infinity,
+                                  onPressed: function,
+                                  child: Text(
+                                    message,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )),
+                            ),
+                          ))
                     ],
                   ),
                 )),
@@ -135,27 +135,13 @@ Widget about({
                     ),
                   ),
                 ),
-              ),
+              )
             ],
           ),
-          /*  decoration: BoxDecoration(
+          decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50.0),
             color: Color.fromRGBO(115, 147, 179, 0.05),
             border: Border.all(color: Colors.grey.withOpacity(0.08)),
-          ),*/
-          decoration: BoxDecoration(
-            color: Colors.grey[200].withOpacity(0.5),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade400,
-                spreadRadius: 2,
-                blurRadius: 2,
-                offset: Offset(4, 5),
-
-              ),
-            ],
-            borderRadius: BorderRadius.circular(40.0),
-
           ),
         ),
       ),
@@ -210,20 +196,20 @@ Widget ShowResultButton({
     );
 
 Widget buildReport(
-  String image,
-  String textAnswer,
-  String textNormal,
-  String textBlind,
-) =>
+    String image,
+    String textAnswer,
+    String textNormal,
+    String textBlind,
+    ) =>
     Row(
       children: [
         Container(
           width: 120.0,
           height: 120.0,
           decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(70),
+            borderRadius: BorderRadius.circular(70),
             border: Border.all(color: Colors.grey[300],
-            width: 10),
+                width: 10),
             image:
             DecorationImage(
               //scale: 0.1,
@@ -293,35 +279,41 @@ Widget buildReport(
     );
 
 Widget DividerReport() => Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Container(
-        width: double.infinity,
-        height: 1.0,
-        color: Colors.grey[300],
-      ),
-    );
-////////////////////////////////////////////////////////////////////////
+  padding: const EdgeInsets.all(10.0),
+  child: Container(
+    width: double.infinity,
+    height: 1.0,
+    color: Colors.grey[300],
+  ),
+);
+//////////////////////////////////    //////////////////////////////////////
 var colorName;
 bool visibleMatchedButton = true;
 Widget colorList(
     List model,
     context,
     ) =>
+
     Padding(
       padding: const EdgeInsets.all(8.0),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8.0),
         child: Container(
           width:double.infinity,
+          ///////////////Hight el container bta3 el matching//////////////////////////////
+          height: 100,
           decoration: BoxDecoration(
-
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(15.0),
               color: Colors.grey[300]),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Color(model[2]),
-                radius: 40.0,
+              ///////////////////////////////Circle avatar el color////////////////////////////////
+              Padding(
+                padding: const EdgeInsets.only(left:8.0),
+                child: CircleAvatar(
+                  backgroundColor: Color(model[2]),
+                  radius: 42.0,
+                ),
               ),
               SizedBox(
                 width: 10,
@@ -330,14 +322,17 @@ Widget colorList(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '${model[1]}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '${model[1]}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18.0),
+                        ),
                       ),
                       Text(
                         '${model[3]}',
-                       // maxLines: 2,
+                        maxLines: 4,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ]),
@@ -345,13 +340,14 @@ Widget colorList(
 
 
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding: const EdgeInsets.only(right: 10.0, bottom: 15),
                 child: Visibility(
                   visible: visibleMatchedButton,
                   child: Padding(
-                    padding: const EdgeInsets.only(left:20.0),
-                    child: CircleAvatar(
-                      child: IconButton(
+                    padding: const EdgeInsets.only(right:1.0),
+                    child: Row(
+                      children: [
+                        IconButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -368,12 +364,17 @@ Widget colorList(
 
                             }
                           },
-                          icon: Icon(Icons.arrow_right_alt)),
+                          icon: const Icon(
+                            Icons.arrow_forward_ios,
+                            size: 45,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ],
+              ),],
           ),
         ),
       ),
