@@ -161,7 +161,6 @@ Widget about({
         ),
       ),
     );
-
 // buttons for test
 
 Widget AnswerButton({
@@ -250,48 +249,39 @@ Widget buildReport(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Flexible(
-                    child: Text(
-                      textAnswer,
-                      //'Your answer : ' + ans[index],
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15.0,
-                      ),
+                Expanded(
+                  child: Text(
+                    textAnswer,
+                    //'Your answer : ' + ans[index],
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0,
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Flexible(
-                    child: Text(
-                      textNormal,
-                      //'Normal view : ' +
-                      //    questions[index].answer.keys.firstWhere(
-                      //        (k) =>
-                      //            questions[index].answer[k].toString() == 'true',
-                      //        orElse: () => null),
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      maxLines: 3,
+                Expanded(
+                  child: Text(
+                    textNormal,
+                    //'Normal view : ' +
+                    //    questions[index].answer.keys.firstWhere(
+                    //        (k) =>
+                    //            questions[index].answer[k].toString() == 'true',
+                    //        orElse: () => null),
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15.0,
                     ),
+                    maxLines: 3,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Flexible(
-                    child: Text(
-                      textBlind,
-                      //'Color blindness : ' + questions[index].colorBlind,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
+                Expanded(
+                  child: Text(
+                    textBlind,
+                    //'Color blindness : ' + questions[index].colorBlind,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 15.0,
                     ),
                   ),
                 ),
@@ -310,28 +300,34 @@ Widget DividerReport() => Padding(
     color: Colors.grey[300],
   ),
 );
-////////////////////////////////////////////////////////////////////////
+//////////////////////////////////    //////////////////////////////////////
 var colorName;
 bool visibleMatchedButton = true;
 Widget colorList(
     List model,
     context,
     ) =>
+
     Padding(
       padding: const EdgeInsets.all(8.0),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 8.0),
         child: Container(
           width:double.infinity,
+          ///////////////Hight el container bta3 el matching//////////////////////////////
+          height: 100,
           decoration: BoxDecoration(
-
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(15.0),
               color: Colors.grey[300]),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Color(model[2]),
-                radius: 40.0,
+              ///////////////////////////////Circle avatar el color////////////////////////////////
+              Padding(
+                padding: const EdgeInsets.only(left:8.0),
+                child: CircleAvatar(
+                  backgroundColor: Color(model[2]),
+                  radius: 42.0,
+                ),
               ),
               SizedBox(
                 width: 10,
@@ -340,14 +336,17 @@ Widget colorList(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        '${model[1]}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16.0),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '${model[1]}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18.0),
+                        ),
                       ),
                       Text(
                         '${model[3]}',
-                        // maxLines: 2,
+                        maxLines: 4,
                         //overflow: TextOverflow.ellipsis,
                       ),
                     ]),
@@ -355,13 +354,14 @@ Widget colorList(
 
 
               Padding(
-                padding: const EdgeInsets.only(left: 20.0),
+                padding: const EdgeInsets.only(right: 10.0, bottom: 15),
                 child: Visibility(
                   visible: visibleMatchedButton,
                   child: Padding(
-                    padding: const EdgeInsets.only(left:20.0),
-                    child: CircleAvatar(
-                      child: IconButton(
+                    padding: const EdgeInsets.only(right:1.0),
+                    child: Row(
+                      children: [
+                        IconButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -378,16 +378,22 @@ Widget colorList(
 
                             }
                           },
-                          icon: Icon(Icons.arrow_right_alt)),
+                          icon: const Icon(
+                            Icons.arrow_forward_ios,
+                            size: 45,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ],
+              ),],
           ),
         ),
       ),
     );
+
 
 Widget CardMenu({
   @required String title,
