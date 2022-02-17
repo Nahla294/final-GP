@@ -1,6 +1,7 @@
 import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/modules/colorMatch_module/basic_colors.dart';
 
 List<List<dynamic>> data=[];
@@ -24,17 +25,51 @@ class _colorsCsvFileState extends State<colorsCsvFile> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
-        backgroundColor: Colors.blueGrey,
-        title: Center(child: Text('Colors')),
-      ) ,
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          automaticallyImplyLeading: false,
+          title: Text('Color Match',style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w500,
+
+          ),),
+          backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
+          ),
+
+          ////////////////////////////HOME BUTTON/////////////////////////////
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(
+                color: Colors.white,
+                iconSize: 35,
+                icon: const Icon(Icons.home_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
+      ),
       body:basic_colors() ,
 
       floatingActionButton:Container(
         height: 35,
         width: 40,
         child: FloatingActionButton(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Color.fromRGBO(42,65,88, 1.0),
 
           child:Icon(Icons.arrow_upward_rounded),//mini: true,
 

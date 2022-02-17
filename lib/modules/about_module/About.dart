@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/shared/components/componenets.dart';
 
 class About extends StatefulWidget {
@@ -13,17 +15,43 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Center(child: Text("ABOUT US!")),//titlee
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          automaticallyImplyLeading: false,
+          title: Text('About Us !',style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w500,
 
-        backgroundColor: Color.fromRGBO(115, 147, 179,1),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          ),),
+          backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
+          ),
 
+          ////////////////////////////HOME BUTTON/////////////////////////////
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(
+                color: Colors.white,
+                iconSize: 35,
+                icon: const Icon(Icons.home_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
         ),
-
-
       ),
       body:Column(
         children: [

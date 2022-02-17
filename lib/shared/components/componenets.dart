@@ -381,7 +381,7 @@ Widget colorList(
                           icon: const Icon(
                             Icons.arrow_forward_ios,
                             size: 45,
-                            color: Colors.blueGrey,
+                            color: Color.fromRGBO(42,65,88, 1.0),
                           ),
                         ),
                       ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/modules/test_module/report_screen.dart';
 
@@ -20,30 +21,44 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     finalScore = ((widget.score / 38) * 100).toInt();
     return Scaffold(
+      backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.blueGrey,
-        shadowColor: Colors.transparent,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          automaticallyImplyLeading: false,
+          title: Text('Test Result',style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w500,
 
-        ////////////////////////////HOME BUTTON/////////////////////////////
-        actions: [
-          IconButton(
-            color: Colors.blueGrey,
-            iconSize: 40,
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              // ignore: prefer_typing_uninitialized_variables
-              var widget;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ),
-              );
-            },
-          )
-        ],
+          ),),
+          backgroundColor: Color.fromRGBO(42,65,88, 1.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
+          ),
+
+
+          ////////////////////////////HOME BUTTON/////////////////////////////
+          actions: [
+            IconButton(
+              color: Colors.white,
+              iconSize: 35,
+              icon: const Icon(Icons.home_rounded),
+              onPressed: () {
+                // ignore: prefer_typing_uninitialized_variables
+                var widget;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+            )
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -64,7 +79,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 height: 80.0,
               ),
               CircleAvatar(
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: Color.fromRGBO(42,65,88, 1.0),
                 radius: 80.0,
                 child: Text(
                   ' ' "$finalScore" "%",
@@ -106,7 +121,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                     side: const BorderSide(
-                      color: Colors.blueGrey,
+                      color: Color.fromRGBO(42,65,88, 1.0),
                       width: 2,
                     ),
                   ),

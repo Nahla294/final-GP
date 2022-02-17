@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/shared/components/componenets.dart';
 import 'colorsCsvFile.dart';
 
@@ -9,19 +11,55 @@ class matched_colors extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:AppBar(
-            backgroundColor: Colors.blueGrey,
-            title: Text('$colorName'),
-            leading: Builder(
-                builder: (BuildContext context) {
-                  return IconButton(
-                    icon: const Icon(Icons.arrow_back_sharp),
-                    onPressed: () {
-                      visibleMatchedButton=true;
-                      matched.clear();
-                      Navigator.pop(context);},
-                    tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                  );})),
+        backgroundColor: Colors.white,
+        appBar:PreferredSize(
+          preferredSize:Size.fromHeight(60) ,
+
+          child: AppBar(
+            backwardsCompatibility: false,
+            systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+              backgroundColor: Color.fromRGBO(42,65,88, 1.0),
+              title: Text('$colorName',style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+              ),),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
+              ),
+              leading: Builder(
+                  builder: (BuildContext context) {
+                    return IconButton(
+                      icon: const Icon(Icons.arrow_back_ios),
+                      iconSize: 30,
+                      onPressed: () {
+                        visibleMatchedButton=true;
+                        matched.clear();
+                        Navigator.pop(context);},
+                      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+                    );}),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: IconButton(
+                  color: Colors.white,
+                  iconSize: 35,
+                  icon: const Icon(Icons.home_rounded),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+
+
+          ),
+
+        ),
 
         body:ListView.separated(
 

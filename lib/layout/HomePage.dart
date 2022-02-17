@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graduation_project/modules/about_module/About.dart';
 import 'package:graduation_project/modules/chatbot_module/ChatBot.dart';
 import 'package:graduation_project/modules/colorMatch_module/colorsCsvFile.dart';
@@ -28,6 +29,8 @@ class _HomePageState extends State<HomePage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(65.0),
         child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
           automaticallyImplyLeading: false,
           backgroundColor:Color.fromRGBO(42,65,88, 1.0),
           title: Padding(

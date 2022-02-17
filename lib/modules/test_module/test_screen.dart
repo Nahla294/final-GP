@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/models/test_data_list.dart';
 import 'package:graduation_project/modules/test_module/result_screen.dart';
@@ -14,8 +15,8 @@ class _TestState extends State<TestScreen> {
   // ignore: prefer_final_fields
   PageController _controller = PageController(initialPage: 0);
   bool isPressed = false;
-  Color isTrue = Colors.blueGrey[800];
-  Color isWrong = Colors.blueGrey[400];
+  Color isTrue = Color.fromRGBO(42,65,88, 1.0);
+  Color isWrong = Color.fromRGBO(112, 128, 144, 1.0);
   int score = 0;
   // ignore: deprecated_member_use
   List ans = List(38);
@@ -27,28 +28,43 @@ class _TestState extends State<TestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor:Color.fromRGBO(42,65,88, 1.0),
-        //backgroundColor: Colors.blueGrey,
-        //shadowColor: Colors.transparent,
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          automaticallyImplyLeading: false,
+          title: Text('ColorBlindness Test',style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w500,
 
-        ////////////////////////////HOME BUTTON/////////////////////////////
-        actions: [
-          IconButton(
-            color: Colors.white,
-            iconSize: 40,
-            icon: const Icon(Icons.home_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ),
-              );
-            },
-          )
-        ],
+          ),),
+          backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
+          ),
+
+          ////////////////////////////HOME BUTTON/////////////////////////////
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(
+                color: Colors.white,
+                iconSize: 35,
+                icon: const Icon(Icons.home_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -79,7 +95,7 @@ class _TestState extends State<TestScreen> {
                       questions[index].question,
                       style: const TextStyle(
                         fontSize: 26.0,
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ),
                     ),
@@ -161,7 +177,7 @@ class _TestState extends State<TestScreen> {
                                         .value
                                     ? isTrue
                                     : isWrong
-                                : Colors.blueGrey,
+                                : Color.fromRGBO(112, 128, 144, 1.0),
                             padding: const EdgeInsets.symmetric(vertical: 20.0),
                             onPressed: isPressed
                                 ? () {}
@@ -227,7 +243,7 @@ class _TestState extends State<TestScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
                                 side: const BorderSide(
-                                  color: Colors.blueGrey,
+                                  color: Color.fromRGBO(42,65,88, 1.0),
                                   width: 2,
                                 ),
                               ),

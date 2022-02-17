@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/shared/components/componenets.dart';
 
 class ChatBot extends StatefulWidget {
@@ -50,59 +52,84 @@ class _ChatBotState extends State<ChatBot> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      AppBar(
-        automaticallyImplyLeading: false,
-        title: Center(child: Text("ChatBot")),
-        backgroundColor: Color.fromRGBO(42,65,88, 1.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        actions: [
-          MaterialButton(
-            onPressed: (){
-              setState(() {
-                x=false;
-                v1 = false;
-                v1A = false;
-                v11 = false;
-                v11A = false;
-                v12 = false;
-                v12A = false;
-                v2 = false;
-                v2A = false;
-                v21 = false;
-                v21A = false;
-                v22 = false;
-                v22A = false;
-                v23 = false;
-                v23A = false;
-                v211=false;
-                v211A=false;
-                v212=false;
-                v212A=false;
-                v213=false;
-                v213A=false;
-                v221=false;
-                v221A=false;
-                v222=false;
-                v222A=false;
-                d221=false;
-                d221A=false;
-                d222=false;
-                d222A=false;
-                v3 = false;
-                v3A = false;
-                v31 = false;
-                v31A = false;
-                v4 = false;
-                v4A = false;
-                GS=true;
-                GSA=false;
-              });
-            },
+      backgroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize:Size.fromHeight(60) ,
+        child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          automaticallyImplyLeading: false,
+          title: Text("ChatBot", style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+
+          ),),
+          //centerTitle: true,
+          backgroundColor: Color.fromRGBO(42,65,88, 1.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
           ),
-        ],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+                setState(() {
+                  x=false;
+                  v1 = false;
+                  v1A = false;
+                  v11 = false;
+                  v11A = false;
+                  v12 = false;
+                  v12A = false;
+                  v2 = false;
+                  v2A = false;
+                  v21 = false;
+                  v21A = false;
+                  v22 = false;
+                  v22A = false;
+                  v23 = false;
+                  v23A = false;
+                  v211=false;
+                  v211A=false;
+                  v212=false;
+                  v212A=false;
+                  v213=false;
+                  v213A=false;
+                  v221=false;
+                  v221A=false;
+                  v222=false;
+                  v222A=false;
+                  d221=false;
+                  d221A=false;
+                  d222=false;
+                  d222A=false;
+                  v3 = false;
+                  v3A = false;
+                  v31 = false;
+                  v31A = false;
+                  v4 = false;
+                  v4A = false;
+                  GS=true;
+                  GSA=false;
+                });
+              },
+                icon:const Icon(Icons.home_rounded),
+                color: Colors.white,
+                iconSize: 35,
+
+
+              ),
+            ),
+
+
+          ],
+        ),
       ),
       body:SingleChildScrollView(
         //controller: _controller,

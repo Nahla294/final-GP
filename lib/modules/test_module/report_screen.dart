@@ -1,5 +1,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/models/test_data_list.dart';
 import 'package:graduation_project/modules/test_module/result_screen.dart';
 import 'package:graduation_project/shared/components/componenets.dart';
@@ -19,20 +21,54 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        shadowColor: Colors.transparent,
-        leading: BackButton(
-          color: Colors.white,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ResultScreen(widget.score, widget.ans),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+          title: Text('Test Report',style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w500,
+
+          ),),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
+          ),
+
+          leading: IconButton(
+            icon: Icon( Icons.arrow_back_ios),
+            color: Colors.white,
+            iconSize: 30,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultScreen(widget.score, widget.ans),
+                ),
+              );
+            },
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: IconButton(
+                color: Colors.white,
+                iconSize: 35,
+                icon: const Icon(Icons.home_rounded),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                },
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
       body: ConditionalBuilder(
