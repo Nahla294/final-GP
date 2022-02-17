@@ -37,7 +37,7 @@ class matched_colors extends StatelessWidget {
                         Navigator.pop(context);},
                       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
                     );}),
-            actions: [
+/*            actions: [
               Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: IconButton(
@@ -54,7 +54,7 @@ class matched_colors extends StatelessWidget {
                   },
                 ),
               ),
-            ],
+            ],*/
 
 
           ),

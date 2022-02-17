@@ -22,7 +22,7 @@ class _AboutState extends State<About> {
           backwardsCompatibility: false,
           systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
           automaticallyImplyLeading: false,
-          title: Text('About Us !',style: TextStyle(
+          title: Text('About us !',style: TextStyle(
             fontSize: 23,
             fontWeight: FontWeight.w500,
 
