@@ -89,9 +89,6 @@ class _colorsCsvFileState extends State<colorsCsvFile> {
       if (data[i][0] == 'basic') {
         basic_data.insert(0, data[i]);
 
-
-
-
       }
     }
 

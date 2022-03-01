@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:graduation_project/modules/about_module/About.dart';
 import 'package:graduation_project/modules/chatbot_module/ChatBot.dart';
 import 'package:graduation_project/modules/colorMatch_module/colorsCsvFile.dart';
+import 'package:graduation_project/modules/detection_module/views/graphic_input.dart';
 import 'package:graduation_project/modules/test_module/test_screen.dart';
 import 'package:graduation_project/shared/components/componenets.dart';
 
@@ -130,45 +131,8 @@ class _HomePageState extends State<HomePage> {
               onTap: (){
 
               },
-              child: Container(
-
-                height: 100,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade400,
-                      spreadRadius:2,
-                      blurRadius:2,
-                      offset: Offset(4,5),
-
-                    ),
-                  ],
-
-                  borderRadius: BorderRadius.circular(30.0),
-
-                ),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 20.0,
-                    ),
-                   Image.asset('assets/home_images/a4.png',width: 55,height: 55,),
-                    const SizedBox(
-                      width: 40.0,
-                    ),
-                    Text('Color Detection',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20.0,
-                        //fontFamily: 'valera',
-                        ),
-                    ),
-
-                  ],
-
-                ),
+              child:CategoryCard(
+                title: "Detect Color",
               ),
             ),
           ],
@@ -177,6 +141,93 @@ class _HomePageState extends State<HomePage> {
 
     );
 
+
+  }
+}
+
+class CategoryCard extends StatefulWidget {
+  final String title;
+  const CategoryCard({
+    Key key,
+    @required this.title,
+  }) : super(key: key);
+
+  @override
+  State<CategoryCard> createState() => _CategoryCardState();
+}
+
+class _CategoryCardState extends State<CategoryCard> {
+  String navigation;
+  Future<String> _getNavigation() async {
+    navigation = '';
+    switch (widget.title) {
+      default:
+        return widget.title;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          height: 100,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade400,
+                spreadRadius:2,
+                blurRadius:2,
+                offset: Offset(4,5),
+
+              ),
+            ],
+
+            borderRadius: BorderRadius.circular(30.0),
+
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () async {
+                navigation = await _getNavigation();
+                navigation != ''
+                    ? Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ImageInputScreen(title: navigation);
+                  }),
+                )
+                    : () {};
+              },
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 20.0,
+                  ),
+                  Image.asset('assets/home_images/a4.png',width: 55,height: 55,),
+                  const SizedBox(
+                    width: 40.0,
+                  ),
+                  Text('Color Detection',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 20.0,
+                    ),
+                  ),
+
+                ],
+
+              ),
+            ),
+          ),
+        ),
+      ),
+
+    );
 
   }
 }
