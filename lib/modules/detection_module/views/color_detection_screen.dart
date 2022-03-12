@@ -9,16 +9,23 @@ import 'package:image_picker/image_picker.dart';
 import 'package:image_pixels/image_pixels.dart';
 import 'dart:io';
 import '../widgets/dropper.dart';
-var d;
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
+var color_name;
+var color_meaning;
 List<List<dynamic>> data=[];
+List<List<dynamic>> data1=[];
+List<List<dynamic>> data2=[];
+List<List<dynamic>> data3=[];
 class ColorDetectionScreen extends StatefulWidget {
   File image;
   ColorDetectionScreen({Key key, @required this.image}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _ColorDetectionScreenState();
+
   }
 }
+
 class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
 
   final picker = ImagePicker();
@@ -86,7 +93,7 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
                                     ),*/
                           ],
                         ),
-                        Text("R: " +
+/*                        Text("R: " +
                             colourToRGB(colorHex).substring(0, 3) +
                             ",  G: " +
                             colourToRGB(colorHex).substring(3, 6) +
@@ -101,8 +108,8 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
                             )
 
 
-                        ),
-                        Text('Color: ${d}',
+                        ),*/
+                        Text('Color: ${color_name}',
                             style:
                             TextStyle(
                               color: Colors.black,
@@ -110,17 +117,25 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
                               fontWeight: FontWeight.w500,
 
                             )),
+                        Padding(
+                          padding: const EdgeInsets.all(14.0),
+                          child: Text('Color meaning: ${color_meaning}',
+                              style:
+                              TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+
+                              )),
+                        ),
                       ],
                     ),
                   ),
                 ),
               );
             });
-
-        var x = int.parse(colourToRGB(colorHex).substring(0, 3));
-        var y = int.parse(colourToRGB(colorHex).substring(3, 6));
-        var z = int.parse(colourToRGB(colorHex).substring(6, 9));
-        LoadAsset(x,y,z);
+        var hex= colorHex;
+        LoadAsset(hex);
       }
     } else {}
   }
@@ -212,15 +227,55 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
     );
   }
 }
-LoadAsset(var x, var y, var z ) async {
-  final mydata = await rootBundle.loadString("assets/detect.csv");
+LoadAsset(var hex) async {
+  final mydata1 = await rootBundle.loadString("assets/detect1.csv");
+  final mydata2=await rootBundle.loadString("assets/detect2.csv");
+  final mydata3=await rootBundle.loadString("assets/detect3.csv");
+  final mydata = await rootBundle.loadString("assets/colors.csv");
 
+  data1 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata1).toList();
+  data2 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata2).toList();
+  data3 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata3).toList();
   data = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata).toList();
-  for (int i = 0; i < data.length; i++) {
-    if (data[i][3]==x && data[i][4]==y && data[i][5]==z) {
-      print(data[i][0]);
-      d=data[i][0];
+  for (int i = 0; i < data1.length; i++) {
+    if (data1[i][0]==hex) {
+      //print(data1[i][1]);
+      color_name=data1[i][1];
+
+    }
+    data1[i][0]==hex
+    ?
+    color_name=data1[i][1]
+        :
+    color_name='color name not found';
+
+  }
+/*  for (int i = 0; i < data2.length; i++) {
+    if (data2[i][0]==hex) {
+      //print(data2[i][1]);
+      color_name=data2[i][1];
 
     }
   }
+  for (int i = 0; i < data3.length; i++) {
+    if (data3[i][0]==hex) {
+      //print(data3[i][1]);
+      color_name=data3[i][1];
+
+    }
+
+  }*/
+  for (int i = 0; i < data.length; i++) {
+    data[i][1]==color_name
+    ?
+      color_meaning=data[i][3]
+    :
+        color_meaning='No color meaning available';
+
+
+  }
+
 }
+
+
+

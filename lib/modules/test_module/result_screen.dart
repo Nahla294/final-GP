@@ -103,7 +103,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       ),
                     )
                   : const Text(
-                      "You have a type of color blindness",
+                      "You may have a color blindness",
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
