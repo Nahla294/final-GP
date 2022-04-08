@@ -68,7 +68,7 @@ class _ResultScreenState extends State<ResultScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
-                'The result.....',
+                'Your Score.....',
                 style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.w400,

@@ -53,7 +53,6 @@ Widget Answer({
     );
 
 Widget send({
-  //chatbot question shape
   @required String message,
   @required Function function,
 }) =>
@@ -75,13 +74,12 @@ Widget send({
                     children: <Widget>[
                       Flexible(
                           child: Container(
-                            constraints: BoxConstraints(maxWidth: 250),
+                            constraints: BoxConstraints(maxWidth: 294),
                             child: Container(
                               height: 28.0,
                               child: MaterialButton(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 2.0, horizontal: 2.0),
-                                  // minWidth: double.infinity,
                                   onPressed: function,
                                   child: Text(
                                     message,
@@ -139,11 +137,6 @@ Widget about({
               ),
             ],
           ),
-          /*  decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0),
-            color: Color.fromRGBO(115, 147, 179, 0.05),
-            border: Border.all(color: Colors.grey.withOpacity(0.08)),
-          ),*/
           decoration: BoxDecoration(
             color: Colors.grey[300],
             boxShadow: [
@@ -420,9 +413,7 @@ Widget CardMenu({
 
             ),
           ],
-
           borderRadius: BorderRadius.circular(35.0),
-
         ),
         child: Column(
           children: [

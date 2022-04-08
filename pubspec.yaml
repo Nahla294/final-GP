@@ -72,9 +72,6 @@ flutter:
     - assets/test_images/
     - assets/colors.csv
     - assets/detect.csv
-    - assets/detect1.csv
-    - assets/detect2.csv
-    - assets/detect3.csv
     
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,14 +17,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   @override
-
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       backgroundColor: Color.fromRGBO(42,65,88, 1.0),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(65.0),
@@ -40,13 +34,10 @@ class _HomePageState extends State<HomePage> {
               fontSize: 25,
               fontWeight:FontWeight.bold,
               color:Colors.white,
-
             ),),
           ),
           centerTitle: true,
           elevation: 0,
-
-
         ),
       ),
       body: Container(
@@ -83,7 +74,6 @@ class _HomePageState extends State<HomePage> {
                   },
                   title: 'Test',
                   icon: 'assets/home_images/Eye Outline With Spiral Center free vector icons designed by Freepik.png',
-
                 ),
                 CardMenu(
                     onTap: (){
@@ -93,7 +83,6 @@ class _HomePageState extends State<HomePage> {
                     },
                     title: 'Color Match',
                     icon: 'assets/home_images/color2.png')
-
               ],
             ),
             Padding(
@@ -112,7 +101,6 @@ class _HomePageState extends State<HomePage> {
                     title: 'About us',
                     icon: 'assets/home_images/i 10.53.49 PM.png',
                   ),
-
                   CardMenu(
                       onTap: (){
                         Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatBot(),
@@ -122,7 +110,6 @@ class _HomePageState extends State<HomePage> {
                       title: 'ChatBot',
                       icon: 'assets/home_images/chatbot.png',
                   ),
-
                 ],
               ),
             ),
@@ -165,7 +152,6 @@ class _CategoryCardState extends State<CategoryCard> {
         return widget.title;
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -182,12 +168,9 @@ class _CategoryCardState extends State<CategoryCard> {
                 spreadRadius:2,
                 blurRadius:2,
                 offset: Offset(4,5),
-
               ),
             ],
-
             borderRadius: BorderRadius.circular(30.0),
-
           ),
           child: Material(
             color: Colors.transparent,

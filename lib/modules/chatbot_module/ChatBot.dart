@@ -280,12 +280,13 @@ class _ChatBotState extends State<ChatBot> {
                 visible: v21,
                 child:send(
                   message:
-                  'Red-green color blindness',
+                  'What is red-green color blindness',
                   function:(){
                     setState(() {
                       v21A=true;
                       v211=true;
                       v212=true;
+                      v213=true;
                     });
                     if (v22A==false){
                       setState(() {
@@ -316,7 +317,7 @@ class _ChatBotState extends State<ChatBot> {
                 visible: v211,
                 child:send(
                   message:
-                  'Deuteranomaly',
+                  'What is Deuteranomaly?',
                   function:(){
                     setState(() {
                       v211A=true;
@@ -342,7 +343,7 @@ class _ChatBotState extends State<ChatBot> {
                 visible: v212,
                 child:send(
                   message:
-                  'Protanomaly',
+                  'What is Protanomaly?',
                   function:(){
                     setState(() {
                       v212A=true;
@@ -360,26 +361,22 @@ class _ChatBotState extends State<ChatBot> {
                     message: 'Protanomaly (aka red-weak) makes red look more green and less bright.'
                 ),
 
-
-
               ),
 
               Visibility(
                 visible: v213,
                 child:send(
-                  message: 'Protanopia and Deuteranopia',
+                  message: 'What\'re Protanopia & Deuteranopia',
 
                   function:(){
                     setState(() {
                       v213A=true;
                       v211=false;
                       v212=false;
-
                     });
                     return[v213A,v211,v212];
                   },
                 ),
-
               ), //q2.1.3
               Visibility(
                 visible: v213A,
@@ -391,7 +388,7 @@ class _ChatBotState extends State<ChatBot> {
               Visibility(
                 visible: v22,
                 child:send(
-                  message: 'Blue-yellow color blindness',
+                  message: 'What is blue-yellow color blindness',
                   function:(){
                     setState(() {
                       v22A=true;
@@ -417,14 +414,14 @@ class _ChatBotState extends State<ChatBot> {
               Visibility(
                 visible: v22A,
                 child: Answer(
-                    message: 'This less-common type of color blindness makes it hard to tell the difference between blue and green, and between yellow and red.'
+                    message: ' blue-yellow is the less-common type of color blindness makes it hard to tell the difference between blue and green, and between yellow and red.'
                 ),
               ),
 
               Visibility(
                 visible: v221,
                 child:send(
-                  message: 'Tritanomaly',
+                  message: 'What is Tritanomaly?',
                   function:(){
                     setState(() {
                       v221A=true;
@@ -447,7 +444,7 @@ class _ChatBotState extends State<ChatBot> {
               Visibility(
                 visible: v222,
                 child:send(
-                  message: 'Tritanopia',
+                  message: 'What is Tritanopia?',
                   function:(){
                     setState(() {
                       v222A=true;
@@ -469,7 +466,7 @@ class _ChatBotState extends State<ChatBot> {
               Visibility(
                 visible: v23,
                 child:send(
-                  message: 'Complete color blindness ',
+                  message: 'What is complete color blindness ?',
                   function:(){
                     setState(() {
                       v23A=true;
@@ -586,7 +583,7 @@ class _ChatBotState extends State<ChatBot> {
               Visibility(
                 visible: d221,
                 child:send(
-                  message: 'Deuteranomaly',
+                  message: 'What is Deuteranomaly?',
                   function:(){
                     setState(() {
                       d221A=true;
@@ -601,15 +598,17 @@ class _ChatBotState extends State<ChatBot> {
               Visibility(
                 visible: d221A,
                 child: Answer(
-                    message:  'Tritanomaly makes it hard to tell the difference between blue and green, and between yellow and red.'
+                    message: 'Deuteranomaly (aka green-weak) is the most common type of red-green color blindness. It makes the green look more red.'
                 ),
+
+
 
               ),
 
               Visibility(
                 visible: d222,
                 child:send(
-                  message: 'Protanomaly',
+                  message: 'What is Protanomaly?',
 
                   function:(){
                     setState(() {
@@ -623,7 +622,7 @@ class _ChatBotState extends State<ChatBot> {
 
               ), //q2.2.2
               Visibility(
-                visible: v212A,
+                visible: d222A,
                 child: Answer(
                     message: 'Protanomaly (aka red-weak) makes red look more green and less bright.'
                 ),

@@ -31,7 +31,6 @@ class _AboutState extends State<About> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
           ),
-
           ////////////////////////////HOME BUTTON/////////////////////////////
           actions: [
             Padding(
