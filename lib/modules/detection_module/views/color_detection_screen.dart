@@ -74,13 +74,16 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
                           mainAxisAlignment:
                           MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: currentSelection,
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: Colors.black),
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: currentSelection,
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(color: Colors.black),
+                                ),
                               ),
                             ),
 /*                                    Text(
@@ -106,21 +109,24 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
 
 
                         ),*/
-                        Text('Color: ${color_name}',
+                        Text('${color_name}',
                             style:
                             TextStyle(
                               color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
 
                             )),
                         Padding(
-                          padding: const EdgeInsets.all(14.0),
-                          child: Text('Color meaning: ${color_meaning}',
+                          padding: const EdgeInsets.symmetric(
+                          vertical: 5.0,
+                            horizontal: 14.0,
+                          ),
+                          child: Text('${color_meaning}',
                               style:
                               TextStyle(
                                 color: Colors.black,
-                                fontSize: 14,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w500,
 
                               )),
