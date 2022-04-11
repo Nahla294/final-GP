@@ -114,7 +114,7 @@ Widget about({
     Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 80.0,
+          vertical: 68.0,
           horizontal: 40.0,
         ),
         child: Container(

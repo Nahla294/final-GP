@@ -45,7 +45,7 @@ class _liveHomepageState extends State<liveHomepage> {
     );
 
   }
-  void closeCameraAndStream() async {
+/*  void closeCameraAndStream() async {
     if (cameraController.value.isStreamingImages) {
       await cameraController.stopImageStream();
     }
@@ -55,7 +55,7 @@ class _liveHomepageState extends State<liveHomepage> {
       cameraController= null;
       //_scanResults = null;
     });
-  }
+  }*/
 
    Function liveCamera() {
     cameraController = CameraController(cameras[0], ResolutionPreset.medium);
@@ -132,13 +132,13 @@ class _liveHomepageState extends State<liveHomepage> {
     liveCamera();
 
   }
-@override
+/*@override
   void dispose() async{
     await Tflite.close();
     cameraController?.dispose();
     super.dispose();
 
-  }
+  }*/
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -168,8 +168,13 @@ class _liveHomepageState extends State<liveHomepage> {
     Navigator.push(
     context,
     MaterialPageRoute(builder: (context) {
-    return ImageInputScreen(title:"Live Camera",);
-                        },));},
+    return ImageInputScreen(title:"Detect Color",);
+                        },));
+    setState(() {
+      // ignore: sdk_version_set_literal
+      cameraController.stopImageStream();
+    });
+    },
                       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
                     );}),
               actions: [
@@ -177,6 +182,10 @@ class _liveHomepageState extends State<liveHomepage> {
                   padding: EdgeInsets.all(5.0),
                   child: IconButton(
                     onPressed: () {
+                      setState(() {
+                        // ignore: sdk_version_set_literal
+                        cameraController.stopImageStream();
+                      });
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -249,30 +258,40 @@ class _liveHomepageState extends State<liveHomepage> {
                                 child: Column(
                                   children: [
                                   Center(
-                                    child: Row(
+                                    child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center ,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                         Container(
-                                            width: 35,
-                                            height: 35,
+                                            width: 40,
+                                            height: 40,
                                             decoration: BoxDecoration(
                                              color:Color(selectedColor),
                                               borderRadius: BorderRadius.circular(12),
                                               border: Border.all(color: Colors.black),
                                             ),
                                           ),
-                                       SizedBox(width:15,),
-                                        Text(colorName
-                                          ,style: TextStyle(fontSize:20.0,color:Colors.black87 ,fontWeight:FontWeight.bold),
-                                          textAlign: TextAlign.center,),
+
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(colorName
+                                            ,style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                            textAlign: TextAlign.center,),
+                                        ),
                                       ],
                                     ),
                                   ),
 
-                                    SizedBox(height:5,),
-
-                                    Text(colorMeaning ,style: TextStyle(fontSize:17.5,color:Colors.black87 ),
+                                    Text(colorMeaning ,
+                                      style: TextStyle(
+                                        fontSize:17.5,
+                                        color:Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                       textAlign: TextAlign.center,)
                                   ],
                                 ),
