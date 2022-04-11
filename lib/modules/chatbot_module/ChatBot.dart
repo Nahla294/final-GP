@@ -360,8 +360,6 @@ class _ChatBotState extends State<ChatBot> {
                     message: 'Protanomaly (aka red-weak) makes red look more green and less bright.'
                 ),
 
-
-
               ),
 
               Visibility(
@@ -374,12 +372,10 @@ class _ChatBotState extends State<ChatBot> {
                       v213A=true;
                       v211=false;
                       v212=false;
-
                     });
                     return[v213A,v211,v212];
                   },
                 ),
-
               ), //q2.1.3
               Visibility(
                 visible: v213A,

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,11 @@ import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/modules/detection_module/views/color_detection_screen.dart';
 import 'package:graduation_project/modules/detection_module/widgets/build_button.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite/tflite.dart';
+
+import '../../../main.dart';
+import 'LiveCamera.dart';
+final liveHomepage livecamera =new liveHomepage();
 
 class ImageInputScreen extends StatefulWidget {
   final String title;
@@ -74,6 +80,7 @@ class _ImageInputScreenState extends State<ImageInputScreen> {
       setState(() {});
     }
   }*/
+
 
   @override
   Widget build(BuildContext context) {
@@ -161,8 +168,31 @@ class _ImageInputScreenState extends State<ImageInputScreen> {
                   onClicked: () {
                     pickImage(ImageSource.camera);
                     visible=true;
+
                   }
                 ),
+                const SizedBox(height: 14),
+
+                BuildButton(
+                    title: '   Live   ',
+
+
+                    icon: Icons.camera,
+
+
+                    onClicked: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>liveHomepage(),
+                      ),
+                      );
+                    },
+
+                    // onClicked: () {
+                    //   MaterialPageRoute(
+                    //       builder: (context) => liveHomepage(),);
+                    //   visible=true;
+                    // }
+                ),
+
                 const SizedBox(height: 14),
                 image != null ?
                 Stack(

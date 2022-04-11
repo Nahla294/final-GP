@@ -37,26 +37,6 @@ class matched_colors extends StatelessWidget {
                         Navigator.pop(context);},
                       tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
                     );}),
-/*            actions: [
-              Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: IconButton(
-                  color: Colors.white,
-                  iconSize: 35,
-                  icon: const Icon(Icons.home_rounded),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],*/
-
-
           ),
 
         ),
