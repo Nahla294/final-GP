@@ -14,6 +14,8 @@ var color_name;
 var color_meaning;
 List<List<dynamic>> data=[];
 List<List<dynamic>> data1=[];
+List<List<dynamic>> data2=[];
+List<List<dynamic>> data3=[];
 class ColorDetectionScreen extends StatefulWidget {
   File image;
   ColorDetectionScreen({Key key, @required this.image}) : super(key: key);
@@ -25,6 +27,7 @@ class ColorDetectionScreen extends StatefulWidget {
 }
 
 class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
+
   final picker = ImagePicker();
   Positioned dropper = Positioned(
     child: Container(width: 0.0, height: 0.0),
@@ -83,11 +86,11 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
                                 border: Border.all(color: Colors.black),
                               ),
                             ),
-                                    Text(
+/*                                    Text(
                                       "#$colorHex",
                                       style:
                                           Theme.of(context).textTheme.headline4,
-                                    ),
+                                    ),*/
                           ],
                         ),
 /*                        Text("R: " +
@@ -106,24 +109,21 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
 
 
                         ),*/
-                        Text('${color_name}',
+                        Text('Color: ${color_name}',
                             style:
                             TextStyle(
                               color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
 
                             )),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 5.0,
-                            horizontal: 14.0,
-                          ),
-                          child: Text('${color_meaning}',
+                          padding: const EdgeInsets.all(14.0),
+                          child: Text('Color meaning: ${color_meaning}',
                               style:
                               TextStyle(
                                 color: Colors.black,
-                                fontSize: 15,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
 
                               )),
@@ -228,34 +228,50 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
   }
 }
 LoadAsset(var hex) async {
-  final mydata1 = await rootBundle.loadString("assets/detect.csv");
+  final mydata1 = await rootBundle.loadString("assets/detect1.csv");
+  final mydata2=await rootBundle.loadString("assets/detect2.csv");
+  final mydata3=await rootBundle.loadString("assets/detect3.csv");
   final mydata = await rootBundle.loadString("assets/colors.csv");
 
   data1 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata1).toList();
+  data2 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata2).toList();
+  data3 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata3).toList();
   data = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata).toList();
   for (int i = 0; i < data1.length; i++) {
-    if (data1[i][0].toString()==hex) {
+    if (data1[i][0]==hex) {
+      //print(data1[i][1]);
       color_name=data1[i][1];
 
     }
-/*    data1[i][0]==hex
+    data1[i][0]==hex
     ?
-    data1[i][0].toString()==hex
+    color_name=data1[i][1]
         :
-    color_name='color name not found';*/
+    color_name='color name not found';
 
   }
+/*  for (int i = 0; i < data2.length; i++) {
+    if (data2[i][0]==hex) {
+      //print(data2[i][1]);
+      color_name=data2[i][1];
 
+    }
+  }
+  for (int i = 0; i < data3.length; i++) {
+    if (data3[i][0]==hex) {
+      //print(data3[i][1]);
+      color_name=data3[i][1];
+
+    }
+
+  }*/
   for (int i = 0; i < data.length; i++) {
-/*    data[i][1]==color_name
+    data[i][1]==color_name
     ?
       color_meaning=data[i][3]
     :
-        color_meaning='No color meaning available';*/
-    if (data[i][1]==color_name) {
-      color_meaning=data[i][3];
+        color_meaning='No color meaning available';
 
-    }
 
   }
 

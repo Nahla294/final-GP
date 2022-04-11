@@ -74,7 +74,7 @@ Widget send({
                     children: <Widget>[
                       Flexible(
                           child: Container(
-                            constraints: BoxConstraints(maxWidth: 250),
+                            constraints: BoxConstraints(maxWidth: 294),
                             child: Container(
                               height: 28.0,
                               child: MaterialButton(
