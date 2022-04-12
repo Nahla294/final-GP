@@ -12,38 +12,32 @@ import '../../../main.dart';
 
 import 'graphic_input.dart';
 
-
 // import 'layout/HomePage.dart';
 // import 'main.dart';
-List<List<dynamic>> data=[];
+List<List<dynamic>> data = [];
 bool isWorking = false;
-int selectedColor=0;
+int selectedColor = 0;
 String colorName = "";
-String colorMeaning="";
-CameraImage imgCamera ;
+String colorMeaning = "";
+CameraImage imgCamera;
 CameraController cameraController;
-
-
 
 class liveHomepage extends StatefulWidget {
   @override
-
   State<liveHomepage> createState() => _liveHomepageState();
 }
 
 class _liveHomepageState extends State<liveHomepage> {
-
-
-  loadModel() async{
+  loadModel() async {
     final mydata = await rootBundle.loadString("assets/colors.csv");
 
-    data = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata).toList();
+    data = CsvToListConverter(
+            eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true)
+        .convert(mydata)
+        .toList();
 
     await Tflite.loadModel(
-     model:"assets/livecolors.tflite",
-   labels:"assets/livecolors.txt"
-    );
-
+        model: "assets/livecolors.tflite", labels: "assets/livecolors.txt");
   }
 /*  void closeCameraAndStream() async {
     if (cameraController.value.isStreamingImages) {
@@ -57,270 +51,239 @@ class _liveHomepageState extends State<liveHomepage> {
     });
   }*/
 
-   Function liveCamera() {
+  Function liveCamera() {
     cameraController = CameraController(cameras[0], ResolutionPreset.medium);
 
     cameraController.initialize().then((value) {
       if (!mounted) {
         return;
-      };
-      setState(() {
-        // ignore: sdk_version_set_literal
-        cameraController.startImageStream((imageFromStream) => {
-          if (!isWorking)
-          {
-                  isWorking = true,
-                  imgCamera = imageFromStream,
-            detectColor()
-                }
-
-            });
-      });
+      }
+      ;
+      try {
+        setState(() {
+          // ignore: sdk_version_set_literal
+          cameraController.startImageStream((imageFromStream) => {
+                if (!isWorking)
+                  {isWorking = true, imgCamera = imageFromStream, detectColor()}
+              });
+        });
+      } catch (e) {
+        print('another error');
+      }
     });
-
   }
 
-  detectColor()async {
+  detectColor() async {
+    if (imgCamera != null) {
+      try {
+        var recognitions = await Tflite.runModelOnFrame(
+          bytesList: imgCamera.planes.map((plane) {
+            return plane.bytes;
+          }).toList(),
+          imageHeight: imgCamera.height,
+          imageWidth: imgCamera.width,
+          imageMean: 127.5,
+          rotation: 90,
+          numResults: 1,
+          threshold: 0.1,
+          asynch: true,
+        );
+        colorName = "";
+        recognitions.forEach((response) {
+          // colorName+=response["label"]+" "+(response["confidence"]as double).toStringAsFixed(2)+"\n\n";
+          colorName += response["label"];
+        });
+        setState(() {
+          colorName;
+        });
 
-    if(imgCamera!=null){
-      var recognitions=await Tflite.runModelOnFrame(bytesList:imgCamera.planes.map((plane) {
-        return plane.bytes;
-      }).toList(),
-    imageHeight: imgCamera.height,
-    imageWidth: imgCamera.width,
-    imageMean: 127.5,
-    rotation: 90,
-   numResults:1,
-    threshold: 0.1,
-    asynch:true,
-      );
-      colorName="";
-      recognitions.forEach((response) {
-      // colorName+=response["label"]+" "+(response["confidence"]as double).toStringAsFixed(2)+"\n\n";
-        colorName+=response["label"];
-      });
-      setState(() {
-        colorName;
-      });
-
-     setState(() {
-       isWorking=false;
-     });
-      for (int i = 0; i < data.length; i++) {
-
-        if (data[i][1]==colorName) {
-          setState(() {
-            colorMeaning=data[i][3];
-            selectedColor=data[i][2];
-
-
-          });
-
+        setState(() {
+          isWorking = false;
+        });
+        for (int i = 0; i < data.length; i++) {
+          if (data[i][1] == colorName) {
+            setState(() {
+              colorMeaning = data[i][3];
+              selectedColor = data[i][2];
+            });
+          }
         }
-
+      } catch (e) {
+        print('error i guess');
       }
     }
-
-
-
   }
 
   @override
   void initState() {
-    super.initState();
+    isWorking = false;
     loadModel();
     liveCamera();
-
+    super.initState();
   }
-/*@override
-  void dispose() async{
-    await Tflite.close();
+
+@override
+  void dispose(){
     cameraController?.dispose();
     super.dispose();
 
-  }*/
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-      home:SafeArea(
-        child:Scaffold(
-
-            appBar: AppBar(
-              backwardsCompatibility: false,
-              systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
-              backgroundColor: Color.fromRGBO(42,65,88, 1.0),
-              title: Text('Live Camera',style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w500,
-              ),),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(bottomRight:Radius.circular(10),bottomLeft:Radius.circular(10) ),
-              ),
-              leading: Builder(
-                  builder: (BuildContext context) {
+        debugShowCheckedModeBanner: false,
+        home: SafeArea(
+            child: Scaffold(
+                appBar: AppBar(
+                  backwardsCompatibility: false,
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarBrightness: Brightness.light,
+                  ),
+                  backgroundColor: Color.fromRGBO(42, 65, 88, 1.0),
+                  title: Text(
+                    'Live Camera',
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)),
+                  ),
+                  leading: Builder(builder: (BuildContext context) {
                     return IconButton(
                       icon: const Icon(Icons.arrow_back_ios),
                       iconSize: 30,
                       onPressed: () {
-
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) {
-    return ImageInputScreen(title:"Detect Color",);
-                        },));
-    setState(() {
-      // ignore: sdk_version_set_literal
-      cameraController.stopImageStream();
-    });
-    },
-                      tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-                    );}),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.all(5.0),
-                  child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        // ignore: sdk_version_set_literal
-                        cameraController.stopImageStream();
-                      });
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
-
-                        ),
-                      );
-
-
-                    },
-                    icon: const Icon(Icons.home_rounded),
-                    color: Colors.white,
-                    iconSize: 35,
-                  ),
-                ),
-              ],
-            ),
-
-          body:
-
-          Column(
-
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-             Expanded(
-                child: Stack(
-                  children:[Center(
-                    child: Container(
-
-                      height: MediaQuery.of(context).size.height * 0.9,
-                      width: MediaQuery.of(context).size.width,
-                      child: !cameraController.value.isInitialized
-                          ? Container()
-                          : AspectRatio(
-                        aspectRatio: cameraController.value.aspectRatio,
-                        child: CameraPreview(cameraController),
+                        cameraController?.dispose();
+                        super.dispose();
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return ImageInputScreen(
+                              title: "Detect Color",
+                            );
+                          },
+                        ));
+                      },
+                      tooltip: MaterialLocalizations.of(context)
+                          .openAppDrawerTooltip,
+                    );
+                  }),
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: IconButton(
+                        onPressed: () {
+                          cameraController?.dispose();
+                          super.dispose();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.home_rounded),
+                        color: Colors.white,
+                        iconSize: 35,
                       ),
                     ),
-
-                     // ),
-                     ),
-                     Container(
-
-                       alignment: Alignment.bottomCenter,
-                     //margin:EdgeInsets.only(bottom:5.0),
-                      child: SingleChildScrollView(
-
-                        child:
-
+                  ],
+                ),
+                body: Column(
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Stack(children: [
                         Center(
-
-
-                            child: Container(
-
-                              constraints: BoxConstraints(
-                                maxHeight:double.infinity
-                              ),
-                              width:double.infinity,
-                              decoration: BoxDecoration(
-
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                              ),
-
-                              child: Padding(
-
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                  Center(
-                                    child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center ,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                        Container(
-                                            width: 40,
-                                            height: 40,
-                                            decoration: BoxDecoration(
-                                             color:Color(selectedColor),
-                                              borderRadius: BorderRadius.circular(12),
-                                              border: Border.all(color: Colors.black),
-                                            ),
-                                          ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(colorName
-                                            ,style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            textAlign: TextAlign.center,),
-                                        ),
-                                      ],
-                                    ),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * 0.9,
+                            width: MediaQuery.of(context).size.width,
+                            child: !cameraController.value.isInitialized
+                                ? Container()
+                                : AspectRatio(
+                                    aspectRatio:
+                                        cameraController.value.aspectRatio,
+                                    child: CameraPreview(cameraController),
                                   ),
+                          ),
 
-                                    Text(colorMeaning ,
-                                      style: TextStyle(
-                                        fontSize:17.5,
-                                        color:Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      textAlign: TextAlign.center,)
-                                  ],
-                                ),
-
-
-
-                              ),
-
-
-                            ),
-
-
-
+                          // ),
                         ),
-                      ),
-                     )
-
-             ] ),
-              ),
-
-
-            ],
-
-          )
-
-        )
-      )
-    );
-
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          //margin:EdgeInsets.only(bottom:5.0),
+                          child: SingleChildScrollView(
+                            child: Center(
+                              child: Container(
+                                constraints:
+                                    BoxConstraints(maxHeight: double.infinity),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Center(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 40,
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                color: Color(selectedColor),
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                border: Border.all(
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                colorName,
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Text(
+                                        colorMeaning,
+                                        style: TextStyle(
+                                          fontSize: 17.5,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ]),
+                    ),
+                  ],
+                ))));
   }
-
 }
