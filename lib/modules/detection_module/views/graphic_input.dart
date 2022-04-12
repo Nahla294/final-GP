@@ -44,44 +44,6 @@ class _ImageInputScreenState extends State<ImageInputScreen> {
       //  showErrorDialog(context, errorMsg);
     }
   }
-
-/*  Future<void> _cropImage() async {
-*//*    File croppedFile = await ImageCropper.cropImage(
-        sourcePath: image.path,
-        aspectRatioPresets: Platform.isAndroid
-            ? [
-                CropAspectRatioPreset.square,
-                CropAspectRatioPreset.ratio3x2,
-                CropAspectRatioPreset.original,
-                CropAspectRatioPreset.ratio4x3,
-                CropAspectRatioPreset.ratio16x9
-              ]
-            : [
-                CropAspectRatioPreset.original,
-                CropAspectRatioPreset.square,
-                CropAspectRatioPreset.ratio3x2,
-                CropAspectRatioPreset.ratio4x3,
-                CropAspectRatioPreset.ratio5x3,
-                CropAspectRatioPreset.ratio5x4,
-                CropAspectRatioPreset.ratio7x5,
-                CropAspectRatioPreset.ratio16x9
-              ],
-        androidUiSettings: const AndroidUiSettings(
-            toolbarTitle: 'Cropper',
-            toolbarColor: Color.fromRGBO(42,65,88, 1.0),
-            toolbarWidgetColor: Colors.white,
-            initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false),
-        iosUiSettings: const IOSUiSettings(
-          title: 'Cropper',
-        ));*//*
-    if (image != null) {
-      image = image;
-      setState(() {});
-    }
-  }*/
-
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -175,22 +137,12 @@ class _ImageInputScreenState extends State<ImageInputScreen> {
 
                 BuildButton(
                     title: '   Live   ',
-
-
                     icon: Icons.camera,
-
-
                     onClicked: (){
                       Navigator.push(context,MaterialPageRoute(builder: (context)=>liveHomepage(),
                       ),
                       );
                     },
-
-                    // onClicked: () {
-                    //   MaterialPageRoute(
-                    //       builder: (context) => liveHomepage(),);
-                    //   visible=true;
-                    // }
                 ),
 
                 const SizedBox(height: 14),
@@ -212,42 +164,6 @@ class _ImageInputScreenState extends State<ImageInputScreen> {
                   ],
                 ),
 
-
-/*                const SizedBox(height: 14),
-                image != null
-                    ? GestureDetector(
-                        onTap: _cropImage,
-                        child: Stack(
-                          children: [
-                            Image.file(
-                              image,
-                              width: double.infinity,
-                              height: size.height * 0.5,
-                            ),
-                            SizedBox(
-                              height: size.height * 0.45,
-                              child: const Center(
-                                child: Text('Tap to Crop',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : SizedBox(
-                        height: size.height * 0.5,
-                        child: const Center(
-                          child: Text(
-                              'Hint: You may tap on the image after selection\n \t\t\t\t\t\tfor Cropping, Rotating and Resizing..',
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),*/
               ],
             ),
           )

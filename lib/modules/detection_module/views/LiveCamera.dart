@@ -39,17 +39,6 @@ class _liveHomepageState extends State<liveHomepage> {
     await Tflite.loadModel(
         model: "assets/livecolors.tflite", labels: "assets/livecolors.txt");
   }
-/*  void closeCameraAndStream() async {
-    if (cameraController.value.isStreamingImages) {
-      await cameraController.stopImageStream();
-    }
-    await cameraController.dispose();
-
-    setState(() {
-      cameraController= null;
-      //_scanResults = null;
-    });
-  }*/
 
   Function liveCamera() {
     cameraController = CameraController(cameras[0], ResolutionPreset.medium);

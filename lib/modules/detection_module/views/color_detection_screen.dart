@@ -10,8 +10,8 @@ import 'package:image_pixels/image_pixels.dart';
 import 'dart:io';
 import '../widgets/dropper.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
-var color_name;
-var color_meaning;
+var color_name = 'color name not found';
+var color_meaning = 'No color meaning available';
 List<List<dynamic>> data=[];
 List<List<dynamic>> data1=[];
 class ColorDetectionScreen extends StatefulWidget {
@@ -237,36 +237,22 @@ class _ColorDetectionScreenState extends State<ColorDetectionScreen> {
     data1 = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata1).toList();
     data = CsvToListConverter(eol: "\n", fieldDelimiter: ",", shouldParseNumbers: true).convert(mydata).toList();
     for (int i = 0; i < data1.length; i++) {
-      if (data1[i][0].toString()==hex) {
-        setState(() {
-          color_name=data1[i][1];
-        });
-
+      if (data1[i][0].toString() == hex) {
+        color_name = data1[i][1];
+        break;
+      } else {
+        color_name = 'color name not found';
       }
-
-/*    data1[i][0]==hex
-    ?
-    data1[i][0].toString()==hex
-        :
-    color_name='color name not found';*/
-
     }
 
     for (int i = 0; i < data.length; i++) {
-/*    data[i][1]==color_name
-    ?
-      color_meaning=data[i][3]
-    :
-        color_meaning='No color meaning available';*/
-      if (data[i][1]==color_name) {
-        setState(() {
-          color_meaning=data[i][3];
-
-        });
+      if (data[i][1] == color_name) {
+        color_meaning = data[i][3];
+      break;}
+      else {
+        color_meaning = 'No color meaning available';
       }
-
     }
-
   }
 }
 
