@@ -4,8 +4,6 @@ import 'package:graduation_project/layout/HomePage.dart';
 import 'package:graduation_project/shared/components/componenets.dart';
 import 'colorsCsvFile.dart';
 
-
-
 class matched_colors extends StatelessWidget {
   @override
 

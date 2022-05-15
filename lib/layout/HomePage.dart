@@ -20,21 +20,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(42,65,88, 1.0),
+      backgroundColor: Color.fromRGBO(42, 65, 88, 1.0),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(65.0),
         child: AppBar(
           backwardsCompatibility: false,
-          systemOverlayStyle: SystemUiOverlayStyle( statusBarBrightness: Brightness.light,),
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarBrightness: Brightness.light,
+          ),
           automaticallyImplyLeading: false,
-          backgroundColor:Color.fromRGBO(42,65,88, 1.0),
+          backgroundColor: Color.fromRGBO(42, 65, 88, 1.0),
           title: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0,),
-            child: Text('Color Harmony',style: TextStyle(
-              fontSize: 25,
-              fontWeight:FontWeight.bold,
-              color:Colors.white,
-            ),),
+            padding: const EdgeInsets.symmetric(
+              vertical: 10.0,
+            ),
+            child: Text(
+              'Color Harmony',
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
           ),
           centerTitle: true,
           elevation: 0,
@@ -44,18 +51,19 @@ class _HomePageState extends State<HomePage> {
         height: 800,
         width: double.infinity,
         decoration: BoxDecoration(
-            color:Colors.white ,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
-        ),
-        padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                  vertical: 35.0,
+                vertical: 35.0,
               ),
-              child: Text('Main Menu ',
+              child: Text(
+                'Main Menu ',
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.w600,
@@ -67,18 +75,25 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CardMenu(
-                  onTap: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>TestScreen(),
-                    ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TestScreen(),
+                      ),
                     );
                   },
                   title: 'Test',
-                  icon: 'assets/home_images/Eye Outline With Spiral Center free vector icons designed by Freepik.png',
+                  icon:
+                      'assets/home_images/Eye Outline With Spiral Center free vector icons designed by Freepik.png',
                 ),
                 CardMenu(
-                    onTap: (){
-                      Navigator.push(context,MaterialPageRoute(builder: (context)=>colorsCsvFile(),
-                      ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => colorsCsvFile(),
+                        ),
                       );
                     },
                     title: 'Color Match',
@@ -87,48 +102,48 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                  vertical: 25.0,
+                vertical: 25.0,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CardMenu(
-                    onTap: (){
-                      Navigator.push(context,MaterialPageRoute(builder: (context)=>About(),
-                      ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => About(),
+                        ),
                       );
                     },
                     title: 'About us',
                     icon: 'assets/home_images/i 10.53.49 PM.png',
                   ),
                   CardMenu(
-                      onTap: (){
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatBot(),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChatBot(),
                         ),
-                        );
-                      },
-                      title: 'ChatBot',
-                      icon: 'assets/home_images/chatbot.png',
+                      );
+                    },
+                    title: 'ChatBot',
+                    icon: 'assets/home_images/chatbot.png',
                   ),
                 ],
               ),
             ),
-
             GestureDetector(
-              onTap: (){
-
-              },
-              child:CategoryCard(
+              onTap: () {},
+              child: CategoryCard(
                 title: "Detect Color",
               ),
             ),
           ],
         ),
       ),
-
     );
-
-
   }
 }
 
@@ -152,6 +167,7 @@ class _CategoryCardState extends State<CategoryCard> {
         return widget.title;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -165,9 +181,9 @@ class _CategoryCardState extends State<CategoryCard> {
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.shade400,
-                spreadRadius:2,
-                blurRadius:2,
-                offset: Offset(4,5),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(4, 5),
               ),
             ],
             borderRadius: BorderRadius.circular(30.0),
@@ -179,11 +195,11 @@ class _CategoryCardState extends State<CategoryCard> {
                 navigation = await _getNavigation();
                 navigation != ''
                     ? Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return ImageInputScreen(title: navigation);
-                  }),
-                )
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return ImageInputScreen(title: navigation);
+                        }),
+                      )
                     : () {};
               },
               child: Row(
@@ -191,26 +207,27 @@ class _CategoryCardState extends State<CategoryCard> {
                   const SizedBox(
                     width: 20.0,
                   ),
-                  Image.asset('assets/home_images/a4.png',width: 55,height: 55,),
+                  Image.asset(
+                    'assets/home_images/a4.png',
+                    width: 55,
+                    height: 55,
+                  ),
                   const SizedBox(
                     width: 40.0,
                   ),
-                  Text('Color Detection',
+                  Text(
+                    'Color Detection',
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 20.0,
                     ),
                   ),
-
                 ],
-
               ),
             ),
           ),
         ),
       ),
-
     );
-
   }
 }

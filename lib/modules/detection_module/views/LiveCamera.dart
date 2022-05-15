@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/services.dart';
 import 'package:graduation_project/layout/HomePage.dart';
-//import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:graduation_project/modules/colorMatch_module/colorsCsvFile.dart';
+import 'package:graduation_project/modules/colorMatch_module/matched_colors.dart';
+import 'package:graduation_project/shared/components/componenets.dart';
 import 'package:tflite/tflite.dart';
-
 import '../../../main.dart';
-
 import 'graphic_input.dart';
 
 // import 'layout/HomePage.dart';
@@ -17,10 +17,11 @@ import 'graphic_input.dart';
 List<List<dynamic>> data = [];
 bool isWorking = false;
 int selectedColor = 0;
-String colorName = "";
+String color_name = "";
 String colorMeaning = "";
 CameraImage imgCamera;
 CameraController cameraController;
+//var color_name;
 
 class liveHomepage extends StatefulWidget {
   @override
@@ -77,20 +78,20 @@ class _liveHomepageState extends State<liveHomepage> {
           threshold: 0.1,
           asynch: true,
         );
-        colorName = "";
+        color_name = "";
         recognitions.forEach((response) {
           // colorName+=response["label"]+" "+(response["confidence"]as double).toStringAsFixed(2)+"\n\n";
-          colorName += response["label"];
+          color_name += response["label"];
         });
         setState(() {
-          colorName;
+          color_name;
         });
 
         setState(() {
           isWorking = false;
         });
         for (int i = 0; i < data.length; i++) {
-          if (data[i][1] == colorName) {
+          if (data[i][1] == color_name) {
             setState(() {
               colorMeaning = data[i][3];
               selectedColor = data[i][2];
@@ -242,7 +243,7 @@ class _liveHomepageState extends State<liveHomepage> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Text(
-                                                colorName,
+                                                color_name,
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 20,
@@ -262,7 +263,36 @@ class _liveHomepageState extends State<liveHomepage> {
                                           fontWeight: FontWeight.w400,
                                         ),
                                         textAlign: TextAlign.center,
+                                      ),
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                            color: Colors.black,
+                                            iconSize: 35,
+                                            icon: const Icon(Icons.color_lens_rounded),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder:(context)=> matched_colors(),
+                                                ),
+                                              );
+                                              colorName = color_name;
+                                              for (int i = 0; i < data.length; i++) {
+                                                if (data[i][0] == colorName) {
+                                                  matched.insert(0, data[i]);
+                                                  visibleMatchedButton = false;
+
+                                                }
+
+                                              }
+                                            },
+                                          ),
+                                        ],
                                       )
+
                                     ],
                                   ),
                                 ),

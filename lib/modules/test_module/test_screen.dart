@@ -139,7 +139,7 @@ class _TestState extends State<TestScreen> {
                                       }
                                       _controller.nextPage(
                                           duration:
-                                              const Duration(milliseconds: 500),
+                                              const Duration(milliseconds: 350),
                                           curve: Curves.linear);
                                     }
                               : null,
