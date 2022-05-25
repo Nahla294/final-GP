@@ -93,23 +93,33 @@ class _ResultScreenState extends State<ResultScreen> {
               const SizedBox(
                 height: 80.0,
               ),
-              finalScore == 100
-                  ? const Text(
-                      "You don't have any type of color blindness",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
-                    )
-                  : const Text(
-                      "You may have a color blindness",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
+              if (finalScore == 100)
+                Text(
+                  "You don't have any type of color blindness",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                ),
+              if (finalScore != 100 && finalScore >= 50)
+                Text(
+                  "You may have color blindness",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              if (finalScore < 50 )
+                Text(
+                  "Unfortunately, you have color blindness",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
               const SizedBox(
                 height: 80.0,
               ),
